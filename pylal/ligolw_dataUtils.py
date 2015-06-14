@@ -13,6 +13,7 @@ or xml document.
 
 import sys, re, math
 import time, datetime
+import lal
 
 from glue.ligolw.utils import print_tables
 from glue.ligolw import ligolw
@@ -20,13 +21,6 @@ from glue.ligolw import table
 from glue.ligolw import lsctables
 from glue import git_version
 
-from pylal.xlal.date import XLALGPSToUTC
-try:
-    from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
-except ImportError:
-    # s6 code
-    from pylal.xlal.date import LIGOTimeGPS
-from pylal import tools
 from pylal import ligolw_sqlutils as sqlutils
 
 
@@ -521,7 +515,7 @@ class CompareDataRows:
         # lal expects the event_id and simulation_id to be integers
         simRow.simulation_id = 0
         snglRow.event_id = 0
-        return tools.XLALEThincaParameterForInjection( simRow, snglRow )
+        return lal.EThincaParameterForInjection( simRow, snglRow )
 
     def eThincaSngl( self, snglDataA, snglDataB ):
         """
@@ -541,7 +535,7 @@ class CompareDataRows:
         snglRowA.event_id = 0
         snglRowB.event_id = 0
         try:
-            ethincaVal = tools.XLALCalculateEThincaParameter( snglRowA, snglRowB )
+            ethincaVal = lal.CalculateEThincaParameter( snglRowA, snglRowB )
         except ValueError:
             # not coincident, just return inf
             ethincaVal = float('inf')
