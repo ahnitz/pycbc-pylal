@@ -41,7 +41,7 @@ from glue import offsetvector
 from pylal import git_version
 from pylal import snglcoinc
 from lal import LIGOTimeGPS
-from pylal.xlal.datatypes import snglinspiraltable
+from lalmetaio import SnglInspiralTable as snglinspiral
 
 
 __author__ = "Kipp Cannon <kipp.cannon@ligo.org>"
@@ -65,7 +65,7 @@ __date__ = git_version.date
 #
 
 
-class SnglInspiral( snglinspiraltable.SnglInspiralTable):
+class SnglInspiral(snglinspiral:
 	__slots__ = ()
 
 	def get_end(self):
@@ -383,7 +383,7 @@ def inspiral_max_dt(events, e_thinca_parameter):
 	# for each instrument present in the event list, compute the
 	# largest \Delta t interval for the events from that instrument,
 	# and return the sum of the largest two such \Delta t's.
-	return sum(sorted(max(xlaltools.XLALSnglInspiralTimeError(event, e_thinca_parameter) for event in events if event.ifo == instrument) for instrument in set(event.ifo for event in events))[-2:]) + 2. * lal.REARTH_SI / lal.C_SI
+	return sum(sorted(max(lal.XLALSnglInspiralTimeError(event, e_thinca_parameter) for event in events if event.ifo == instrument) for instrument in set(event.ifo for event in events))[-2:]) + 2. * lal.REARTH_SI / lal.C_SI
 
 
 def inspiral_max_dt_exact(events, e_thinca_parameter):
@@ -409,7 +409,7 @@ def inspiral_coinc_compare(a, offseta, b, offsetb, light_travel_time, e_thinca_p
 	if offsetb: b.set_end(b.get_end() + offsetb)
 	try:
 		# FIXME:  should it be "<" or "<="?
-		coincident = xlaltools.XLALCalculateEThincaParameter(a, b) <= e_thinca_parameter
+		coincident = lal.XLALCalculateEThincaParameter(a, b) <= e_thinca_parameter
 	except ValueError:
 		# ethinca test failed to converge == events are not
 		# coincident
