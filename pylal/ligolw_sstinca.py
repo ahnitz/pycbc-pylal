@@ -65,7 +65,7 @@ __date__ = git_version.date
 #
 
 
-class SnglInspiral(snglinspiral:
+class SnglInspiral(snglinspiral):
 	__slots__ = ()
 
 	def get_end(self):

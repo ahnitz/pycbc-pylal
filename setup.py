@@ -166,7 +166,6 @@ class pylal_install(install.install):
 		# now run the installer
 		install.install.run(self)
 
-
 class pylal_sdist(sdist.sdist):
 	def run(self):
 		# customize tarball contents
@@ -202,106 +201,12 @@ setup(
 	license = "See file LICENSE",
 	packages = [
 		"pylal",
-		"pylal.xlal",
-		"pylal.xlal.datatypes"
 	],
 	cmdclass = {
 		"build_py": pylal_build_py,
 		"install": pylal_install,
 		"sdist": pylal_sdist
 	},
-	ext_modules = [
-		Extension(
-			"pylal.tools",
-			["src/tools.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs + lalinspiral_pkg_config.incdirs,
-			libraries = lal_pkg_config.libs + lalinspiral_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs + lalinspiral_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs + lalinspiral_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags
-		),
-		Extension(
-			"pylal.xlal.datatypes.lalunit",
-			["src/xlal/datatypes/lalunit.c"],
-			include_dirs = lal_pkg_config.incdirs + ["src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags
-		),
-		Extension(
-			"pylal.xlal.datatypes.ligotimegps",
-			["src/xlal/datatypes/ligotimegps.c"],
-			include_dirs = lal_pkg_config.incdirs + ["src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags
-		),
-		Extension(
-			"pylal.xlal.datatypes.simburst",
-			["src/xlal/datatypes/simburst.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs + ["src/xlal", "src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags + ["-DPY_SSIZE_T_CLEAN"]
-		),
-		Extension(
-			"pylal.xlal.datatypes.siminspiraltable",
-			["src/xlal/datatypes/siminspiraltable.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs+ ["src/xlal", "src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags + ["-DPY_SSIZE_T_CLEAN"]
-		),
-		Extension(
-			"pylal.xlal.datatypes.snglburst",
-			["src/xlal/datatypes/snglburst.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs + ["src/xlal", "src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags + ["-DPY_SSIZE_T_CLEAN"]
-		),
-		Extension(
-			"pylal.xlal.datatypes.snglinspiraltable",
-			["src/xlal/datatypes/snglinspiraltable.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs + ["src/xlal", "src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags + ["-DPY_SSIZE_T_CLEAN"]
-		),
-		Extension(
-			"pylal.xlal.datatypes.snglringdowntable",
-			["src/xlal/datatypes/snglringdowntable.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs + ["src/xlal", "src/xlal/datatypes"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags
-		),
-		Extension(
-			"pylal.xlal.date",
-			["src/xlal/date.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + [numpy_get_include(), "src/xlal"],
-			libraries = lal_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags
-		),
-		Extension(
-			"pylal.xlal.tools",
-			["src/xlal/tools.c", "src/xlal/misc.c"],
-			include_dirs = lal_pkg_config.incdirs + lalmetaio_pkg_config.incdirs + lalinspiral_pkg_config.incdirs + [numpy_get_include(), "src/xlal"],
-			libraries = lal_pkg_config.libs + lalinspiral_pkg_config.libs,
-			library_dirs = lal_pkg_config.libdirs + lalinspiral_pkg_config.libdirs,
-			runtime_library_dirs = lal_pkg_config.libdirs + lalinspiral_pkg_config.libdirs,
-			extra_compile_args = lal_pkg_config.extra_cflags
-		),
-	],
 	scripts = [
 		os.path.join("bin", "ligolw_cbc_cluster_coincs"),
 		os.path.join("bin", "ligolw_cbc_dbinjfind"),
