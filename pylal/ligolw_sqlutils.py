@@ -2593,12 +2593,7 @@ class segdict_from_segment:
     and segment_definer table in the sqlite database.
     """
     from glue import segments
-    try:
-        from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
-    except ImportError:
-        # s6 code
-        from pylal.xlal.date import LIGOTimeGPS
-
+    from lal import LIGOTimeGPS
     snglinst_segdict = segments.segmentlistdict()
 
     def __init__(self, connection, filter = ''):

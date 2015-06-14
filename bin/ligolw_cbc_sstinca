@@ -44,7 +44,7 @@ from glue import segmentsUtils
 from pylal import git_version
 from pylal import ligolw_sstinca as ligolw_thinca
 from pylal import snglcoinc
-from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
+from lal import LIGOTimeGPS
 
 
 lsctables.use_in(ligolw.LIGOLWContentHandler)

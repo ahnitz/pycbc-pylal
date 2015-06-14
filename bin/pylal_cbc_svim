@@ -18,7 +18,7 @@ from glue.ligolw import ligolw, lsctables, dbtables, utils, array
 from pylal import ligolw_cbc_compute_durations as compute_dur
 from pylal import rate
 from pylal import InspiralUtils
-from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
+from lal import LIGOTimeGPS
 
 import lal as constants
 from pylal import upper_limit_utils, imr_utils
