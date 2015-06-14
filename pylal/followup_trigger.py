@@ -26,6 +26,7 @@ import tempfile
 
 import pylab
 import numpy
+import lal
 
 from pylal import SnglInspiralUtils
 from pylal import InspiralUtils
@@ -886,7 +887,7 @@ class FollowupTrigger:
           ifo1 = sngl1.ifo
           ifo2 = sngl2.ifo
           try:
-            ethinca = tools.XLALCalculateEThincaParameter(sngl1,sngl2)
+            ethinca = lal.CalculateEThincaParameter(sngl1,sngl2)
           except:
             ethinca = 'Not coincident'
           Name = 'Ethinca distance between ' + ifo1 + ' and ' + ifo2
@@ -1034,7 +1035,7 @@ class FollowupTrigger:
           for j in range(i+1,len(result['foundlist'])):
             ifo2 = (result['foundlist'])[j]
             try:
-              ethinca = tools.XLALCalculateEThincaParameter(
+              ethinca = lal.CalculateEThincaParameter(
                          result['loudest_details'][ifo]['trig'],
                          result['loudest_details'][ifo2]['trig'])
               loudest_ethinca += "%s and %s: %.3f <br>" % \
