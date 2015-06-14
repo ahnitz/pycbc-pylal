@@ -20,13 +20,8 @@ from glue.ligolw import table
 from glue.ligolw import lsctables
 from glue import git_version
 
-from pylal.xlal.date import XLALGPSToUTC
-try:
-    from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
-except ImportError:
-    # s6 code
-    from pylal.xlal.date import LIGOTimeGPS
-
+from lal import GPSToUTC
+from lal import LIGOTimeGPS
 
 __author__ = "Collin Capano <cdcapano@physics.syr.edu>"
 __version__ = git_version.id
@@ -215,7 +210,7 @@ def get_dst_start_end(ifo, year):
 
 def get_sitelocaltime_from_gps(ifo, gpstime):
     # get the utc time in datetime.datetime format
-    utctime = XLALGPSToUTC(LIGOTimeGPS(gpstime, 0))
+    utctime = GPSToUTC(LIGOTimeGPS(gpstime, 0))
     utctime = datetime.datetime(utctime[0],utctime[1],utctime[2],utctime[3],utctime[4],utctime[5],utctime[6])
     # figure out if daylight savings time was on or not
     dst_start, dst_end = get_dst_start_end(ifo, utctime.year)
@@ -234,7 +229,7 @@ def get_sitelocaltime_from_gps(ifo, gpstime):
 
 
 def format_end_time_in_utc(gps_sec):
-    return time.strftime("%a %d %b %Y %H:%M:%S", XLALGPSToUTC(LIGOTimeGPS(gps_sec, 0)))
+    return time.strftime("%a %d %b %Y %H:%M:%S", GPSToUTC(LIGOTimeGPS(gps_sec, 0)))
 
 
 def get_elog_page(ifo, gpstime):
@@ -255,7 +250,7 @@ def get_elog_page(ifo, gpstime):
     return site_address
 
 def get_daily_ihope_page(gpstime, pages_location = "https://ldas-jobs.ligo.caltech.edu/~cbc/ihope_daily"):
-    utctime = XLALGPSToUTC(LIGOTimeGPS(gpstime, 0))
+    utctime = GPSToUTC(LIGOTimeGPS(gpstime, 0))
     return "%s/%s/%s/" %(pages_location, time.strftime("%Y%m", utctime), time.strftime("%Y%m%d", utctime))
 
 
