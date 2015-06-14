@@ -4,9 +4,8 @@ from glue.ligolw import ligolw
 from glue.ligolw import table
 from glue.ligolw import lsctables
 from glue.ligolw import utils
-from pylal.tools import XLALCalculateEThincaParameter
-from pylal.xlal import date
-from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
+from lal import CalculateEThincaParameter
+from lal import LIGOTimeGPS
 import glue.iterutils
 import numpy
 import cmath
@@ -633,7 +632,7 @@ class coincInspiralTable:
     for i,coinc in enumerate(self):
       if hasattr(coinc, ifos[0]) and hasattr(coinc, ifos[1]):
         try: 
-          ethinca[i] = XLALCalculateEThincaParameter(getattr(coinc, ifos[0]),
+          ethinca[i] = CalculateEThincaParameter(getattr(coinc, ifos[0]),
                                                      getattr(coinc, ifos[1]))
         except ValueError:
           ethinca[i] = 2.0

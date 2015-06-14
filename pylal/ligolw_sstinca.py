@@ -409,7 +409,7 @@ def inspiral_coinc_compare(a, offseta, b, offsetb, light_travel_time, e_thinca_p
 	if offsetb: b.set_end(b.get_end() + offsetb)
 	try:
 		# FIXME:  should it be "<" or "<="?
-		coincident = lal.XLALCalculateEThincaParameter(a, b) <= e_thinca_parameter
+		coincident = lal.CalculateEThincaParameter(a, b) <= e_thinca_parameter
 	except ValueError:
 		# ethinca test failed to converge == events are not
 		# coincident
