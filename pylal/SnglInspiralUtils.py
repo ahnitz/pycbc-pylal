@@ -25,7 +25,7 @@
 import copy
 
 from pylal import SearchSummaryUtils
-from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
+from lal import LIGOTimeGPS
 from glue.ligolw import ligolw
 from glue.ligolw import table
 from glue.ligolw import lsctables
