@@ -48,7 +48,7 @@ from glue.ligolw.utils import process as ligolw_process
 from glue.ligolw.utils import time_slide as ligolw_time_slide
 from glue.text_progress_bar import ProgressBar
 from pylal import git_version
-from pylal import ligolw_thinca
+from pylal import ligolw_stinca as ligolw_thinca
 from pylal import SimInspiralUtils
 
 

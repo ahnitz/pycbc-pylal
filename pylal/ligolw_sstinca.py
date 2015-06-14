@@ -40,8 +40,7 @@ from glue.ligolw.utils import search_summary as ligolw_search_summary
 from glue import offsetvector
 from pylal import git_version
 from pylal import snglcoinc
-from pylal.xlal import tools as xlaltools
-from pylal.xlal.datatypes.ligotimegps import LIGOTimeGPS
+from lal import LIGOTimeGPS
 from pylal.xlal.datatypes import snglinspiraltable
 
 
@@ -58,13 +57,6 @@ __date__ = git_version.date
 # =============================================================================
 #
 
-
-#
-# Use C row classes for memory and speed
-#
-
-
-lsctables.CoincMapTable.RowType = lsctables.CoincMap = xlaltools.CoincMap
 
 
 #
